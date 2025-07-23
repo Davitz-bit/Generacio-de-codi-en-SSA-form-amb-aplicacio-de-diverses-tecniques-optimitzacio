@@ -1,0 +1,96 @@
+function f
+  params
+    _result boolean
+    a integer
+    b float
+  endparams
+
+  vars
+    x integer
+    y boolean
+    z integer 10
+  endvars
+
+     %1 = 9
+     %2 = 67
+     %3 = a + %2
+     z[%1] = %3
+     %4 = 34
+     x = %4
+     %5 = 3
+     %6 = 56
+     %7 = 9
+     %8 = z[%7]
+     %9 = %6 + %8
+     z[%5] = %9
+     %10 = 3
+     %11 = z[%10]
+     %12 = float %11
+     %14 = %12 <=. b
+     %13 = not %14
+     ifFalse %13 goto else1
+     %15 = 78
+     x = %15
+     writef b
+     writes "\n"
+     goto endif1
+  label else1 :
+     %16 = 99
+     x = %16
+  label endif1 :
+     %17 = 3
+     %18 = z[%17]
+     writei %18
+     writes "\n"
+     %19 = 1
+     _result = %19
+     return
+endfunction
+
+function fz
+  params
+    r integer
+  endparams
+
+  label startWhile1 :
+     %1 = 0
+     %3 = r <= %1
+     %2 = not %3
+     ifFalse %2 goto endwhile1
+     %4 = 1
+     %5 = r - %4
+     r = %5
+     goto startWhile1
+  label endwhile1 :
+     return
+endfunction
+
+function main
+  vars
+    a integer
+  endvars
+
+     pushparam 
+     %1 = 3
+     pushparam %1
+     %2 = 2
+     %3 = float %2
+     pushparam %3
+     call f
+     popparam 
+     popparam 
+     popparam %4
+     ifFalse %4 goto endif1
+     %5 = 3.7
+     %6 = float a
+     %7 = %6 +. %5
+     %8 = 4
+     %9 = float %8
+     %10 = %7 +. %9
+     writef %10
+     writes "\n"
+  label endif1 :
+     return
+endfunction
+
+

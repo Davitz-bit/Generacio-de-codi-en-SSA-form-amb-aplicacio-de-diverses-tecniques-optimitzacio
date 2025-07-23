@@ -1,0 +1,125 @@
+function f
+  params
+    _result boolean
+    a integer
+    f float
+  endparams
+
+  vars
+    x integer
+    b boolean
+    z integer 10
+  endvars
+
+     %1 = 5
+     readi %2
+     z[%1] = %2
+     %3 = 5
+     %4 = z[%3]
+     %5 = 88
+     %6 = float %5
+     %7 = %6 *. f
+     %8 = float %4
+     %9 = %8 -. %7
+     writef %9
+     readi b
+     readf f
+     ifFalse b goto endif1
+     writes "h\n\tl\\a"
+     %10 = -. f
+     %11 = -. %10
+     %12 = -. %11
+     writef %12
+     writes "\n"
+  label endif1 :
+     %13 = 1
+     _result = %13
+     return
+endfunction
+
+function fz
+  params
+    _result float
+    r integer
+    u float
+  endparams
+
+  label startWhile1 :
+     %1 = 0.01
+     %2 = float r
+     %4 = %2 <=. %1
+     %3 = not %4
+     ifFalse %3 goto endwhile1
+     %5 = 1
+     %6 = r - %5
+     r = %6
+     goto startWhile1
+  label endwhile1 :
+     %7 = 0
+     %8 = r == %7
+     ifFalse %8 goto endif1
+     pushparam 
+     %9 = 55555
+     pushparam %9
+     %10 = 5
+     %11 = - %10
+     %12 = 4
+     %13 = %11 / %12
+     %14 = float %13
+     pushparam %14
+     call f
+     popparam 
+     popparam 
+     popparam 
+  label endif1 :
+     %15 = 3
+     %16 = r + %15
+     %17 = float %16
+     %18 = %17 *. u
+     _result = %18
+     return
+endfunction
+
+function main
+  vars
+    a integer
+    q float
+  endvars
+
+   %1 = 1
+   %2 = - %1
+   %3 = float %2
+   q = %3
+   pushparam 
+   %4 = 3
+   %5 = 4
+   %6 = %4 + %5
+   pushparam %6
+   pushparam 
+   %7 = 4444
+   pushparam %7
+   %8 = 3
+   %9 = float %8
+   %10 = q +. %9
+   pushparam %10
+   call fz
+   popparam 
+   popparam 
+   popparam %11
+   pushparam %11
+   call fz
+   popparam 
+   popparam 
+   popparam %12
+   q = %12
+   %13 = 3.7
+   %14 = q +. %13
+   %15 = 4
+   %16 = float %15
+   %17 = %14 +. %16
+   writef %17
+   writes "\n"
+   return
+endfunction
+
+

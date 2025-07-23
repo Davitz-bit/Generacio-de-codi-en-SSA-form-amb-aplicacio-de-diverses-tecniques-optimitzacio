@@ -1,0 +1,256 @@
+function f
+  params
+    v integer array
+  endparams
+
+  vars
+    c integer 10
+    i integer
+  endvars
+
+     %1 = v
+     %3 = 0
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 1
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 2
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 3
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 4
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 5
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 6
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 7
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 8
+     %2 = %1[%3]
+     c[%3] = %2
+     %3 = 9
+     %2 = %1[%3]
+     c[%3] = %2
+     writes "en f. c: "
+     %4 = 0
+     i = %4
+  label startWhile1 :
+     %5 = 10
+     %6 = i < %5
+     ifFalse %6 goto endwhile1
+     %7 = c[i]
+     writei %7
+     %8 = ' '
+     writec %8
+     %9 = 1
+     %10 = i + %9
+     i = %10
+     goto startWhile1
+  label endwhile1 :
+     %11 = '\n'
+     writec %11
+     return
+endfunction
+
+function g
+  params
+    v integer array
+  endparams
+
+  vars
+    d integer 10
+    i integer
+  endvars
+
+     %1 = 0
+     i = %1
+  label startWhile1 :
+     %2 = 10
+     %3 = i < %2
+     ifFalse %3 goto endwhile1
+     %4 = 1
+     %5 = - %4
+     d[i] = %5
+     %6 = 1
+     %7 = i + %6
+     i = %7
+     goto startWhile1
+  label endwhile1 :
+     %8 = v
+     %10 = 0
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 1
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 2
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 3
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 4
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 5
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 6
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 7
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 8
+     %9 = d[%10]
+     %8[%10] = %9
+     %10 = 9
+     %9 = d[%10]
+     %8[%10] = %9
+     return
+endfunction
+
+function main
+  vars
+    a integer 10
+    b integer 10
+    i integer
+    j integer
+  endvars
+
+     %1 = 0
+     i = %1
+  label startWhile1 :
+     %2 = 10
+     %3 = i < %2
+     ifFalse %3 goto endwhile1
+     a[i] = i
+     %4 = 0
+     b[i] = %4
+     %5 = 1
+     %6 = i + %5
+     i = %6
+     goto startWhile1
+  label endwhile1 :
+     %8 = 0
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 1
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 2
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 3
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 4
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 5
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 6
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 7
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 8
+     %7 = a[%8]
+     b[%8] = %7
+     %8 = 9
+     %7 = a[%8]
+     b[%8] = %7
+     writes "despres de b=a. b: "
+     %9 = 0
+     i = %9
+  label startWhile2 :
+     %10 = 10
+     %11 = i < %10
+     ifFalse %11 goto endwhile2
+     %12 = b[i]
+     writei %12
+     %13 = ' '
+     writec %13
+     %14 = 1
+     %15 = i + %14
+     i = %15
+     goto startWhile2
+  label endwhile2 :
+     %16 = '\n'
+     writec %16
+     writes "despres de b=a. a: "
+     %17 = 0
+     i = %17
+  label startWhile3 :
+     %18 = 10
+     %19 = i < %18
+     ifFalse %19 goto endwhile3
+     %20 = a[i]
+     writei %20
+     %21 = ' '
+     writec %21
+     %22 = 1
+     %23 = i + %22
+     i = %23
+     goto startWhile3
+  label endwhile3 :
+     %24 = '\n'
+     writec %24
+     %25 = &b
+     pushparam %25
+     call f
+     popparam 
+     writes "despres de f(a). a: "
+     %26 = 0
+     i = %26
+  label startWhile4 :
+     %27 = 10
+     %28 = i < %27
+     ifFalse %28 goto endwhile4
+     %29 = a[i]
+     writei %29
+     %30 = ' '
+     writec %30
+     %31 = 1
+     %32 = i + %31
+     i = %32
+     goto startWhile4
+  label endwhile4 :
+     %33 = '\n'
+     writec %33
+     %34 = &a
+     pushparam %34
+     call g
+     popparam 
+     writes "despres de g(a). a: "
+     %35 = 0
+     i = %35
+  label startWhile5 :
+     %36 = 10
+     %37 = i < %36
+     ifFalse %37 goto endwhile5
+     %38 = a[i]
+     writei %38
+     %39 = ' '
+     writec %39
+     %40 = 1
+     %41 = i + %40
+     i = %41
+     goto startWhile5
+  label endwhile5 :
+     %42 = '\n'
+     writec %42
+     return
+endfunction
+
+

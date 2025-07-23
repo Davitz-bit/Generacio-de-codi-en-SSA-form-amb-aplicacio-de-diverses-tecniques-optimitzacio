@@ -1,0 +1,51 @@
+function main
+  vars
+    a integer
+    b integer
+    end boolean
+    pi float
+  endvars
+
+   %1 = 12
+   a = %1
+   %2 = 5
+   %3 = a * %2
+   %4 = 1
+   %5 = a + %4
+   %6 = a * %5
+   %7 = %3 + %6
+   b = %7
+   %9 = b < a
+   %8 = not %9
+   %10 = 0
+   %11 = a == %10
+   %12 = not %11
+   %13 = %8 and %12
+   end = %13
+   %14 = 3.3
+   %15 = 1
+   %16 = %15 / a
+   %17 = float %16
+   %18 = %14 +. %17
+   %19 = 2.0
+   %20 = -. %19
+   %21 = float a
+   %22 = %20 /. %21
+   %23 = %18 -. %22
+   pi = %23
+   %24 = a == b
+   %25 = %24 or end
+   writei %25
+   writes "\n"
+   %26 = a * b
+   writei %26
+   writes "\n"
+   %27 = 2
+   %28 = float %27
+   %29 = %28 *. pi
+   writef %29
+   writes "\n"
+   return
+endfunction
+
+

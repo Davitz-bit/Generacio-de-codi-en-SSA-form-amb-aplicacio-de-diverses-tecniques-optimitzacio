@@ -1,0 +1,182 @@
+function read_chars
+  params
+    _result integer
+    a character array
+  endparams
+
+  vars
+    i integer
+  endvars
+
+     %1 = 0
+     i = %1
+  label startWhile1 :
+     %2 = 10
+     %3 = i < %2
+     ifFalse %3 goto endwhile1
+     %4 = a
+     readc %5
+     %4[i] = %5
+     %6 = a
+     %7 = %6[i]
+     %8 = '.'
+     %10 = %7 == %8
+     %9 = not %10
+     ifFalse %9 goto else1
+     %11 = 1
+     %12 = i + %11
+     i = %12
+     goto endif1
+  label else1 :
+     _result = i
+     return
+  label endif1 :
+     goto startWhile1
+  label endwhile1 :
+     %13 = 10
+     _result = %13
+     return
+     return
+endfunction
+
+function find_vowels
+  params
+    n integer
+    vc character array
+    vb boolean array
+  endparams
+
+  vars
+    c character
+  endvars
+
+  label startWhile1 :
+     %1 = 0
+     %3 = n <= %1
+     %2 = not %3
+     ifFalse %2 goto endwhile1
+     %4 = 1
+     %5 = n - %4
+     %6 = vc
+     %7 = %6[%5]
+     c = %7
+     %8 = 1
+     %9 = n - %8
+     %10 = vb
+     %11 = 'a'
+     %12 = c == %11
+     %13 = 'e'
+     %14 = c == %13
+     %15 = %12 or %14
+     %16 = 'i'
+     %17 = c == %16
+     %18 = %15 or %17
+     %19 = 'o'
+     %20 = c == %19
+     %21 = %18 or %20
+     %22 = 'u'
+     %23 = c == %22
+     %24 = %21 or %23
+     %10[%9] = %24
+     %25 = 1
+     %26 = n - %25
+     n = %26
+     goto startWhile1
+  label endwhile1 :
+     return
+endfunction
+
+function write_consonants
+  params
+    _result float
+    n integer
+    vc character array
+    vb boolean array
+  endparams
+
+  vars
+    k float
+    i integer
+  endvars
+
+     %1 = 0
+     i = %1
+     %2 = 0
+     %3 = float %2
+     k = %3
+  label startWhile1 :
+     %5 = i == n
+     %4 = not %5
+     ifFalse %4 goto endwhile1
+     %6 = vb
+     %7 = %6[i]
+     ifFalse %7 goto else1
+     %8 = 1
+     %9 = float %8
+     %10 = k +. %9
+     k = %10
+     goto endif1
+  label else1 :
+     %11 = vc
+     %12 = %11[i]
+     writec %12
+  label endif1 :
+     %13 = 1
+     %14 = i + %13
+     i = %14
+     goto startWhile1
+  label endwhile1 :
+     %15 = '\n'
+     writec %15
+     %16 = 100
+     %17 = float %16
+     %18 = %17 *. k
+     %19 = float n
+     %20 = %18 /. %19
+     _result = %20
+     return
+     return
+endfunction
+
+function main
+  vars
+    a character 10
+    b boolean 10
+    n integer
+    p float
+  endvars
+
+   pushparam 
+   %1 = &a
+   pushparam %1
+   call read_chars
+   popparam 
+   popparam %2
+   n = %2
+   pushparam n
+   %3 = &a
+   pushparam %3
+   %4 = &b
+   pushparam %4
+   call find_vowels
+   popparam 
+   popparam 
+   popparam 
+   pushparam 
+   pushparam n
+   %5 = &a
+   pushparam %5
+   %6 = &b
+   pushparam %6
+   call write_consonants
+   popparam 
+   popparam 
+   popparam 
+   popparam %7
+   p = %7
+   writef p
+   writes "\n"
+   return
+endfunction
+
+

@@ -1,0 +1,171 @@
+function one
+  params
+    _result float
+  endparams
+
+   %1 = 1
+   %2 = float %1
+   _result = %2
+   return
+   return
+endfunction
+
+function sort
+  params
+    v float array
+  endparams
+
+  vars
+    i integer
+    j integer
+    jmin integer
+    aux float
+  endvars
+
+     %1 = 0
+     i = %1
+  label startWhile2 :
+     %2 = 20
+     %3 = 1
+     %4 = %2 - %3
+     %5 = i < %4
+     ifFalse %5 goto endwhile2
+     jmin = i
+     %6 = 1
+     %7 = i + %6
+     j = %7
+  label startWhile1 :
+     %8 = 20
+     %9 = j < %8
+     ifFalse %9 goto endwhile1
+     %10 = v
+     %11 = %10[j]
+     %12 = v
+     %13 = %12[jmin]
+     %14 = %11 <. %13
+     ifFalse %14 goto endif1
+     jmin = j
+  label endif1 :
+     %15 = 1
+     %16 = j + %15
+     j = %16
+     goto startWhile1
+  label endwhile1 :
+     %18 = jmin == i
+     %17 = not %18
+     ifFalse %17 goto endif2
+     %19 = v
+     %20 = %19[i]
+     aux = %20
+     %21 = v
+     %22 = v
+     %23 = %22[jmin]
+     %21[i] = %23
+     %24 = v
+     %24[jmin] = aux
+  label endif2 :
+     %25 = 1
+     %26 = i + %25
+     i = %26
+     goto startWhile2
+  label endwhile2 :
+     return
+endfunction
+
+function evenPositivesAndSort
+  params
+    v float array
+  endparams
+
+  vars
+    i integer
+  endvars
+
+     %1 = 0
+     i = %1
+  label startWhile1 :
+     %2 = 20
+     %3 = i < %2
+     ifFalse %3 goto endwhile1
+     %4 = v
+     %5 = %4[i]
+     %6 = 0
+     %7 = float %6
+     %9 = %5 <=. %7
+     %8 = not %9
+     ifFalse %8 goto endif1
+     %10 = v
+     pushparam 
+     call one
+     popparam %11
+     %10[i] = %11
+  label endif1 :
+     %12 = 1
+     %13 = i + %12
+     i = %13
+     goto startWhile1
+  label endwhile1 :
+     %14 = v
+     pushparam %14
+     call sort
+     popparam 
+     return
+endfunction
+
+function main
+  vars
+    af float 20
+    i integer
+  endvars
+
+     %1 = 0
+     i = %1
+  label startWhile1 :
+     %2 = 20
+     %3 = i < %2
+     ifFalse %3 goto endwhile1
+     readf %4
+     af[i] = %4
+     %5 = 1
+     %6 = i + %5
+     i = %6
+     goto startWhile1
+  label endwhile1 :
+     %7 = &af
+     pushparam %7
+     call evenPositivesAndSort
+     popparam 
+     %8 = 0
+     i = %8
+  label startWhile2 :
+     %9 = 20
+     %10 = i < %9
+     ifFalse %10 goto endwhile2
+     %11 = af[i]
+     pushparam 
+     call one
+     popparam %12
+     %14 = %11 ==. %12
+     %13 = not %14
+     ifFalse %13 goto else1
+     %15 = af[i]
+     writef %15
+     %16 = ' '
+     writec %16
+     %17 = 1
+     %18 = i + %17
+     i = %18
+     goto endif1
+  label else1 :
+     %19 = '\n'
+     writec %19
+     return
+  label endif1 :
+     goto startWhile2
+  label endwhile2 :
+     %20 = '\n'
+     writec %20
+     return
+endfunction
+
+
